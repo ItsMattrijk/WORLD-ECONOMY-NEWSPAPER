@@ -11,23 +11,81 @@
     <header class="header">
         <div class="container">
             <div class="logo-section">
-                <h1>🗞️ WORLD ECONOMY NEWSPAPER</h1>
+                <h1>🗞️ WORLD ECONOMY NEWS PAPER</h1>
                 <p class="tagline">📰 "Big News!" - Morgan's Press Agency 📰</p>
                 <p class="subtitle">🐦 Distribué par nos fidèles Martins Facteurs à travers les mers! 🐦</p>
             </div>
-            <nav class="nav">
-                <?php if (isset($_SESSION['utilisateur'])): ?>
-                    <span class="user-info">👤 Bienvenue, <?= htmlspecialchars($_SESSION['utilisateur']['nom']) ?> (<?= $_SESSION['utilisateur']['role'] ?>)</span>
-                    <?php if ($_SESSION['utilisateur']['role'] === 'admin' || $_SESSION['utilisateur']['role'] === 'auteur'): ?>
-                        <a href="index.php?action=admin" class="btn btn-primary">✍️ Nouvelle Scoop</a>
+            
+            <!-- Menu de navigation avec dropdowns -->
+            <nav class="main-nav">
+                <a href="index.php" class="nav-link">🏠 Accueil</a>
+                
+                <!-- Dropdown Thèmes -->
+                <div class="nav-dropdown">
+                    <button class="nav-link dropdown-btn">🏷️ Thèmes ▼</button>
+                    <div class="dropdown-content">
+                        <?php
+                        require_once 'modeles/ModeleTheme.php';
+                        $modeleTheme = new ModeleTheme($GLOBALS['pdo']);
+                        $themes = $modeleTheme->getTousLesThemes();
+                        foreach ($themes as $theme):
+                        ?>
+                            <a href="index.php?action=filtrer&theme=<?= $theme['id'] ?>">
+                                <?= htmlspecialchars($theme['nom']) ?>
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                
+                <!-- Dropdown Régions -->
+                <div class="nav-dropdown">
+                    <button class="nav-link dropdown-btn">🌍 Régions ▼</button>
+                    <div class="dropdown-content">
+                        <?php
+                        require_once 'modeles/ModeleRegion.php';
+                        $modeleRegion = new ModeleRegion($GLOBALS['pdo']);
+                        $regions = $modeleRegion->getToutesLesRegions();
+                        foreach ($regions as $region):
+                        ?>
+                            <a href="index.php?action=filtrer&region=<?= $region['id'] ?>">
+                                <?= htmlspecialchars($region['nom']) ?>
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                
+                <!-- Dropdown Pays -->
+                <div class="nav-dropdown">
+                    <button class="nav-link dropdown-btn">📍 Pays ▼</button>
+                    <div class="dropdown-content dropdown-content-large">
+                        <?php
+                        require_once 'modeles/ModelePays.php';
+                        $modelePays = new ModelePays($GLOBALS['pdo']);
+                        $pays = $modelePays->getTousLesPays();
+                        foreach ($pays as $p):
+                        ?>
+                            <a href="index.php?action=filtrer&pays=<?= $p['id'] ?>">
+                                <?= htmlspecialchars($p['nom']) ?> <span class="pays-region">(<?= htmlspecialchars($p['region_nom']) ?>)</span>
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                
+                <!-- Boutons utilisateur -->
+                <div class="nav-user">
+                    <?php if (isset($_SESSION['utilisateur'])): ?>
+                        <span class="user-info">👤 <?= htmlspecialchars($_SESSION['utilisateur']['nom']) ?></span>
+                        <?php if ($_SESSION['utilisateur']['role'] === 'admin' || $_SESSION['utilisateur']['role'] === 'auteur'): ?>
+                            <a href="index.php?action=admin" class="btn btn-primary">✍️ Nouvelle Scoop</a>
+                        <?php endif; ?>
+                        <?php if ($_SESSION['utilisateur']['role'] === 'admin'): ?>
+                            <a href="index.php?action=tableau_admin" class="btn btn-secondary">⚙️ Admin</a>
+                        <?php endif; ?>
+                        <a href="index.php?action=deconnexion" class="btn btn-logout">🚪 Déconnexion</a>
+                    <?php else: ?>
+                        <a href="index.php?action=login" class="btn btn-primary">🔑 Connexion</a>
                     <?php endif; ?>
-                    <?php if ($_SESSION['utilisateur']['role'] === 'admin'): ?>
-                        <a href="index.php?action=tableau_admin" class="btn btn-secondary">⚙️ Administration</a>
-                    <?php endif; ?>
-                    <a href="index.php?action=deconnexion" class="btn btn-logout">🚪 Déconnexion</a>
-                <?php else: ?>
-                    <a href="index.php?action=login" class="btn btn-primary">🔑 Connexion Presse</a>
-                <?php endif; ?>
+                </div>
             </nav>
         </div>
     </header>
@@ -100,9 +158,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>🗞️ World Economy News Paper - "The News That Shakes the World!" 🗞️</p>
-            <p>📮 Livré par nos Martins Facteurs à travers les Grand Line, New World et tous les Blues!</p>
-            <p>🐦 © Morgan's Press Agency - Toutes les nouvelles qui méritent d'être connues! 🐦</p>
+            <p>🐦 © World Economy NewsPaper - Toutes les nouvelles qui méritent d'être connues! 🐦</p>
         </div>
     </footer>
 </body>

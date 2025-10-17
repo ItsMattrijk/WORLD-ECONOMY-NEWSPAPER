@@ -118,5 +118,33 @@ class ControleurArticle {
         $pays = $this->modelePays->getPaysParRegion($id_region);
         echo json_encode($pays);
     }
+
+public function afficherArticlesFiltres() {
+    $id_theme = $_GET['theme'] ?? null;
+    $id_region = $_GET['region'] ?? null;
+    $id_pays = $_GET['pays'] ?? null;
+    
+    $articles = $this->modeleArticle->getArticlesAvecFiltres($id_theme, $id_region, $id_pays);
+    
+    // Récupérer les infos pour l'affichage du titre
+    $filtre_nom = "Tous les articles";
+    if ($id_theme) {
+        $stmt = $GLOBALS['pdo']->prepare("SELECT nom FROM themes WHERE id = ?");
+        $stmt->execute([$id_theme]);
+        $filtre_nom = "Thème : " . $stmt->fetch()['nom'];
+    } else if ($id_region) {
+        $stmt = $GLOBALS['pdo']->prepare("SELECT nom FROM regions WHERE id = ?");
+        $stmt->execute([$id_region]);
+        $filtre_nom = "Région : " . $stmt->fetch()['nom'];
+    } else if ($id_pays) {
+        $stmt = $GLOBALS['pdo']->prepare("SELECT nom FROM pays WHERE id = ?");
+        $stmt->execute([$id_pays]);
+        $filtre_nom = "Pays : " . $stmt->fetch()['nom'];
+    }
+    
+    require 'vues/liste.php';
+}
+
+
 }
 ?>

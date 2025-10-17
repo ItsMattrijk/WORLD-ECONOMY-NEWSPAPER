@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="public/style.css">
 </head>
 <body>
-    <!-- Header -->
+   <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="logo-section">
-                <h1>🗞️ WORLD ECONOMY NEWSPAPER</h1>
+                <h1>🗞️ WORLD ECONOMY NEWS PAPER</h1>
                 <p class="tagline">📰 "Big News!" - Morgan's Press Agency 📰</p>
             </div>
             <nav class="nav">
@@ -63,9 +63,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>🗞️ World Economy News Paper - "The News That Shakes the World!" 🗞️</p>
-            <p>📮 Livré par nos Martins Facteurs à travers les Grand Line, New World et tous les Blues!</p>
-            <p>🐦 © Morgan's Press Agency - Toutes les nouvelles qui méritent d'être connues! 🐦</p>
+            <p>🐦 © World Economy NewsPaper - Toutes les nouvelles qui méritent d'être connues! 🐦</p>
         </div>
     </footer>
 </body>
