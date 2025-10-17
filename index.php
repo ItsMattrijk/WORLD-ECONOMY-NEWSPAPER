@@ -13,6 +13,11 @@ switch ($action) {
         $controleurArticle->afficherListe();
         break;
 
+    case 'filtrer':
+        // AJOUT DE CE CASE POUR LE FILTRAGE
+        $controleurArticle->afficherArticlesFiltres();
+        break;
+
     case 'article':
         $id = $_GET['id'] ?? null;
         if ($id) {

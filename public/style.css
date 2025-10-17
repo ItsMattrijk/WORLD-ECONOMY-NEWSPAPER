@@ -3,14 +3,17 @@
    Style inspiré de Morgans (One Piece)
    =========================== */
 
+   @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    font-family: 'Georgia', 'Times New Roman', serif;
+    font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
     color: #333;
     line-height: 1.6;
@@ -176,6 +179,27 @@ body {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* CORRECTION: Utiliser hover sur le conteneur parent ET garder le menu visible avec un délai */
+.nav-dropdown:hover .dropdown-content {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    /* Ajout d'un léger délai avant la fermeture */
+    transition-delay: 0s;
+}
+
+/* Optionnel: Ajouter un petit espace invisible pour faciliter le survol */
+.nav-dropdown::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: transparent;
 }
 
 /* Style pour les pays avec région */
