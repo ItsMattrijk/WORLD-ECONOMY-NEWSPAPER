@@ -5,6 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion - WENP</title>
     <link rel="stylesheet" href="public/style.css">
+    <style>
+        /* Petite mise en forme du bloc comptes disponibles */
+        .test-accounts {
+            margin-top: 2rem;
+            background-color: #f8f9fa;
+            border: 2px dashed #ccc;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: left;
+        }
+        .test-accounts h3 {
+            margin-top: 0;
+            color: #333;
+            text-align: center;
+        }
+        .test-accounts ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .test-accounts li {
+            margin: 0.4rem 0;
+        }
+        .test-accounts code {
+            background: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+    </style>
 </head>
 <body>
    <!-- Header -->
@@ -53,9 +82,20 @@
                 </button>
             </form>
 
+            <!-- Comptes de test -->
+            <div class="test-accounts">
+                <h3>🧪 Comptes disponibles pour les testeurs :</h3>
+                <ul>
+                    <li><strong>Admin :</strong> <code>morgans@worldeconomynews.op</code></li>
+                    <li><strong>Auteur :</strong> <code>vivi@worldeconomynews.op</code></li>
+                    <li><strong>Lecteur :</strong> <code>law@worldeconomynews.op</code></li>
+                </ul>
+                <p><strong>🔑 Mot de passe commun :</strong> <code>onepiece123</code></p>
+            </div>
+
             <div class="login-footer">
-                <p>💡 <strong>Astuce:</strong> Seuls les journalistes accrédités par Morgans peuvent publier des scoops!</p>
-                <p>🐦 Les Martins Facteurs vérifient toutes les connexions!</p>
+                <p>💡 <strong>Astuce :</strong> Seuls les journalistes accrédités par Morgans peuvent publier des scoops !</p>
+                <p>🐦 Les Martins Facteurs vérifient toutes les connexions !</p>
             </div>
         </div>
     </main>
@@ -63,7 +103,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>🐦 © World Economy NewsPaper - Toutes les nouvelles qui méritent d'être connues! 🐦</p>
+            <p>🐦 © World Economy NewsPaper - Toutes les nouvelles qui méritent d'être connues ! 🐦</p>
         </div>
     </footer>
 </body>
